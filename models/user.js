@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  email: {
+  account: {
     type: String,
     required: true
   },
@@ -47,7 +47,7 @@ UserSchema.methods.authenticate = function(plainText) {
 UserSchema.methods.issueJWT = async function() {
   let now = Math.ceil(new Date().getTime()/1000);
   let user = {
-    sub: this.email,
+    sub: this.account,
     id: this._id,
     name: this.name,
     iss: issuer,
@@ -65,5 +65,7 @@ UserSchema.virtual('password').set( function(password) {
   this.salt = this.makeSalt();
   this.hashed_password = this.hashPassword(password);
 });
+
+UserSchema.index({ account: 1 });
 
 module.exports = mongoose.model('User', UserSchema);
