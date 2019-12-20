@@ -1,15 +1,33 @@
 'use strict';
 
 const express = require('express');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const config = require('./config/config');
+const userRoutes = require('./routes/user');
+
 let app = express();
+app.use(bodyParser.json());
 
-let port = process.env.PORT || 3000;
 
+mongoose.connect(config.dbUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const db = mongoose.connection;
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+db.on('error', err => {
+  console.log(err);
 });
 
-app.listen(port, () => {
-  console.log('Server start on ' + port);
+db.once('open', () => {
+  console.log(`Connected to ${config.dbUrl}`);
+});
+
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(userRoutes);
+
+app.listen(config.port, () => {
+  console.log(config.welcome);
 });
