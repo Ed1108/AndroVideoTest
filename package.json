@@ -1,0 +1,30 @@
+{
+  "name": "androvideotest",
+  "version": "0.1.0",
+  "description": "AndroVideo Homework",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ed1108/AndroVideoTest.git"
+  },
+  "keywords": [
+    "AndroVideo"
+  ],
+  "author": "Ed Chou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ed1108/AndroVideoTest/issues"
+  },
+  "homepage": "https://github.com/Ed1108/AndroVideoTest#readme",
+  "devDependencies": {
+    "eslint": "^6.7.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
