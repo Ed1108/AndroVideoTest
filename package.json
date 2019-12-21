@@ -1,6 +1,6 @@
 {
   "name": "androvideotest",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "AndroVideo Homework",
   "main": "app.js",
   "scripts": {
