@@ -9,6 +9,8 @@ globals:
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
+ignorePatterns:
+  - public/
 rules:
   indent:
     - error

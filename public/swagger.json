@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is spec of AndroVideo homework.",
+    "version": "1.0.0",
+    "title": "AndroVideo homework"
+  },
+  "host": "127.0.0.1:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User Management"
+    },
+    {
+      "name": "Article Management"
+    }
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Please input the Bearer {YOUR TOKEN}"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "tags": [
+          "User Management"
+        ],
+        "summary": "Create user",
+        "description": "",
+        "operationId": "postUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResSuccess"
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User Management"
+        ],
+        "summary": "User login",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          }
+        }
+      }
+    },
+    "/article": {
+      "post": {
+        "tags": [
+          "Article Management"
+        ],
+        "summary": "Create article",
+        "operationId": "createArticle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created article",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostArticle"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResSuccess"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Article Management"
+        ],
+        "summary": "Get article",
+        "operationId": "getArticle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "description": "article id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "limit of query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "offset of query",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GetArticle"
+            }
+          }
+        }
+      }
+    },
+    "/article/{articleId}/": {
+      "patch": {
+        "tags": [
+          "Article Management"
+        ],
+        "summary": "Update article",
+        "operationId": "updateArticle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "articleId",
+            "required": true,
+            "description": "article id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update article",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostArticle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResSuccess"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Article Management"
+        ],
+        "summary": "Delete article",
+        "operationId": "deleteArticle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "articleId",
+            "required": true,
+            "description": "article id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResSuccess"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ResSuccess": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "PostArticle": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "Article": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    },
+    "GetArticle": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Article"
+          }
+        }
+      }
+      
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

@@ -31,6 +31,8 @@ app.use(passport.session());
 app.use(userRoutes);
 app.use(articleRoutes);
 
+app.use('/static', express.static('public'));
+
 app.server = app.listen(config.port, () => {
   console.log(config.welcome);
 });
