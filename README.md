@@ -1,6 +1,8 @@
 # AndroVideo Assignment
 
 This is AndroVideo homework. Use the Mongo database.
+Use Bearer token
+Authorization: Bearer {TOKEN}
 
 
 
