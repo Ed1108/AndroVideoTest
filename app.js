@@ -20,6 +20,7 @@ db.on('error', err => {
 });
 
 db.once('open', () => {
+  app.emit('dbOpen');
   console.log(`Connected to ${config.dbUrl}`);
 });
 
@@ -30,6 +31,8 @@ app.use(passport.session());
 app.use(userRoutes);
 app.use(articleRoutes);
 
-app.listen(config.port, () => {
+app.server = app.listen(config.port, () => {
   console.log(config.welcome);
 });
+
+module.exports = app;

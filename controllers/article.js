@@ -31,7 +31,11 @@ module.exports = {
       if (req.query.offset !== undefined) {
         condition.skip = Number(req.query.offset);
       }
-      let articles = await Article.find({}, null, condition);
+      let find = {};
+      if(req.query.id) {
+        find._id = req.query.id;
+      }
+      let articles = await Article.find(find, null, condition);
       
       
       let result = [];

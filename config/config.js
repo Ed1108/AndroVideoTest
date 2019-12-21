@@ -3,6 +3,10 @@ let dbHost = process.env.DB_HOST || '127.0.0.1';
 let dbPort = process.env.DB_PORT || 27017;
 let dbName = 'androDB';
 
+if(process.env.NODE_ENV === 'test') {
+  dbName = 'androTestDB';
+}
+
 
 let port = process.env.PORT || 3000;
 
