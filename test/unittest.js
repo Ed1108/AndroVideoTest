@@ -39,7 +39,7 @@ describe('Unit test', () => {
     let param = USER_1;
 
     request.agent(URL)
-      .post('/register')
+      .post('/user/register')
       .set('Content-Type', 'application/json')
       .send(param)
       .end((err, res) =>{
@@ -52,7 +52,7 @@ describe('Unit test', () => {
     let param = USER_1;
 
     request.agent(URL)
-      .post('/register')
+      .post('/user/register')
       .set('Content-Type', 'application/json')
       .send(param)
       .end((err, res) =>{
@@ -65,7 +65,7 @@ describe('Unit test', () => {
     let param = USER_2;
 
     request.agent(URL)
-      .post('/register')
+      .post('/user/register')
       .set('Content-Type', 'application/json')
       .send(param)
       .end((err, res) =>{
@@ -78,7 +78,7 @@ describe('Unit test', () => {
     let param = USER_1;
 
     request.agent(URL)
-      .post('/login')
+      .post('/user/login')
       .set('Content-Type', 'application/json')
       .send(param)
       .end((err, res) =>{
@@ -148,7 +148,7 @@ describe('Unit test', () => {
     let param = USER_2;
 
     request.agent(URL)
-      .post('/login')
+      .post('/user/login')
       .set('Content-Type', 'application/json')
       .send(param)
       .end((err, res) =>{

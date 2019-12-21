@@ -6,7 +6,7 @@ const { postRegister } = require('../controllers/user');
 
 const router = express.Router();
 
-router.post('/login', 
+router.post('/user/login',
   passport.authenticate('local'),
   async (req, res) => {
     let token = await req.user.issueJWT();
@@ -16,6 +16,6 @@ router.post('/login',
   }
 );
 
-router.post('/register', postRegister);
+router.post('/user/register', postRegister);
 
 module.exports = router;
