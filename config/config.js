@@ -14,6 +14,6 @@ module.exports = {
     JWT_TOKEN_SIGNING_KEY: Buffer.from('xRjgFjvoJWbpx4v0uIrc', 'base64'),
     JWT_ALGORITHM: 'HS512',
     JWT_TOKEN_ISSUER:'AndroVideo',
-    JWT_TOKEN_EXPIRATION_TIME: 60*60
+    JWT_TOKEN_EXPIRATION_TIME: 2*60*60
   }
 };

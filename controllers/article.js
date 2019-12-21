@@ -10,7 +10,7 @@ module.exports = {
       article.author = req.user.name;
       article.authorId = new ObjectId(req.user.id);
       await article.save();
-      res.status(201).send({message: 'Article has be created success.'});
+      res.status(201).send({message: 'Article has been created success.'});
     }catch (err) {
       res.status(400).send(err); 
     }
@@ -49,5 +49,38 @@ module.exports = {
       res.status(400).send(err);
     }
     
+  },
+
+  updateArticle: async (req, res) => {
+    if(!req.article) {
+      return res.status(404).send({message: 'Invalid articleId.'});
+    }
+
+    if(req.article.authorId.toString() !== req.user.id) {
+      return res.status(403).send({message: 'Permission denied.'});
+    }
+
+    if(req.body.subject) {
+      req.article.subject = req.body.subject;
+    }
+
+    if(req.body.content) {
+      req.article.content = req.body.content;
+    }
+
+    await req.article.save();
+    res.status(200).send({message: 'Article has been updated success.'});
+  },
+
+  deleteArticle: async (req, res) => {
+    if(!req.article) {
+      return res.status(404).send({message: 'Invalid articleId.'});
+    }
+    if(req.article.authorId.toString() !== req.user.id) {
+      return res.status(403).send({message: 'Permission denied.'});
+    }
+
+    await req.article.remove();
+    res.status(200).send({message: 'Article has been deleted success.'});
   }
 };

@@ -14,7 +14,7 @@ let exp = config.jwt.JWT_TOKEN_EXPIRATION_TIME;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    default: 'Anonymous'
   },
   account: {
     type: String,

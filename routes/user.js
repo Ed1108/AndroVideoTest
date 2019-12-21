@@ -7,10 +7,7 @@ const { postRegister } = require('../controllers/user');
 const router = express.Router();
 
 router.post('/login', 
-  passport.authenticate('local', {
-    failureFlash: false, 
-    failWithError: true
-  }),
+  passport.authenticate('local'),
   async (req, res) => {
     let token = await req.user.issueJWT();
     return res.status(200).send({

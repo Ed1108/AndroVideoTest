@@ -13,7 +13,6 @@ const opts = {
   issuer: config.jwt.JWT_TOKEN_ISSUER
 };
 
-console.log(opts);
 
 module.exports = passport => {
   passport.use(new LocalStrategy(
@@ -39,7 +38,7 @@ module.exports = passport => {
     }
   ));
 
-  passport.use( 'jwt', new JwtStrategy(opts, (payload, done) => {
+  passport.use( new JwtStrategy(opts, (payload, done) => {
     let exp = payload.exp;
     let iat = payload.iat;
     const current = Math.ceil(new Date().getTime()/1000);
